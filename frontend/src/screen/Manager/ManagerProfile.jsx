@@ -15,6 +15,7 @@ import logo from './photos/logofull.png'
 import userpng from './photos/User.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import ManagerEnrollments from './ManagerEnrollments'
 
 
 function ManagerProfile() {
@@ -23,7 +24,12 @@ function ManagerProfile() {
     const [email, setEmail] = useState();
     const [contactnumber, setContactnumber] = useState();       
     const [secanswer, setSecAnswer] = useState();
-    
+    const [showEnrollments, setShowEnrollments] = useState(false);
+
+     const handleEnrollmentsClick = () => {
+        setShowEnrollments(true);
+        
+     };
     useEffect(()=>{
         axios.get('/managerprofile')
         .then((res)=>{
@@ -60,7 +66,7 @@ function ManagerProfile() {
                     </li>
                     <li>
                         <img src={enroll} alt='home' className='navimage'/>
-                        <a href='/login'>Enrollments</a>
+                        <a href='/ManagerEnrollments'>Enrollments</a>
                     </li>
                     <li>
                         <img src={pay} alt='home' className='navimage'/>

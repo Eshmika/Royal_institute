@@ -1,0 +1,108 @@
+.logo {
+    position: fixed;
+}
+
+.grid{
+    margin-left: 20%;
+    width: 100%;;
+    
+}
+
+
+.Enroll{
+    margin-top: 6%;
+}
+
+.p-5{
+    background-color: azure;
+}
+
+
+.studentd{
+    margin-top: 10%;
+}
+
+.card{
+    &c1{
+        color: black;
+
+    }
+}
+
+.dtlis{
+    
+    margin-left: 20%;
+    margin-top: -16%;
+}
+
+.student-image{
+    width: 100px; 
+
+}
+.stdcard{
+    position:l;
+    margin-left: 20%;
+    width: 100%;
+}
+
+.student-table {
+    width: 120%;
+    border-collapse: collapse;
+  }
+  
+  .student-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .unenroll-button, .edit-button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .unenroll-button:hover, .edit-button:hover {
+    background-color: #9ec7f1;
+  }
+
+  .studentenroll-table{
+    width: auto;
+    background-color: rgb(237, 238, 243);
+
+    th{
+        width: 1200px;
+
+    }
+
+
+  }
+
+
+.Attendanceform{
+    width: 30%;
+    margin-left: 20%;
+    margin-top: 5%;
+    background-color: #9ec7f1;
+    font-family: Arial, sans-serif;
+  padding: 20px;
+
+}
+.card11{
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.lable1{
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #666;
+
+}
+
+
+
