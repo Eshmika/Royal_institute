@@ -7,6 +7,8 @@ import StudentProfile from './screen/Student/StudentProfile';
 import StudentProfileEdit from './screen/Student/StudentProfieEdit';
 import StudentForgetPassword from './screen/Student/Forgetpasswordstudent';
 import StudentTimetable from './screen/Student/Timetable';
+import StudentEnroll from './screen/Student/StudentEnroll';
+import StudentAttendance from './screen/Student/StudentAttendance';
 
 import TeacherLogin from './screen/Teacher/TeacherLogin';
 import TeacherProfile from './screen/Teacher/TeacherProfile';
@@ -46,6 +48,9 @@ function App() {
       <Route path='/studentprofileedit' element={<StudentProfileEdit/>}/> 
       <Route path='/studentforgetpassword' element={<StudentForgetPassword/>}/>
       <Route path="/studenttimetable" element={<StudentTimetable />} />
+      <Route path="/studentenroll" element={<StudentEnroll/>} />
+      <Route path="/studentattendance" element={<StudentAttendance/>}/>
+
       <Route path="/teacherlogin" element={<TeacherLogin />} />
       <Route path="/teacherprofile" element={<TeacherProfile />} />
       <Route path='/teacherprofileedit' element={<TeacherProfileEdit/>}/>

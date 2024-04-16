@@ -15,11 +15,9 @@ import logo from './photos/logofull.png'
 import userpng from './photos/User.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import StudentAttendance from './StudentAttendance'
-import StudentEnroll from './StudentEnroll'
 
 
-function StudentProfile() {
+function StudentEnroll() {
     const [name, setName] = useState();
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
@@ -68,7 +66,7 @@ function StudentProfile() {
                     </li>
                     <li>
                         <img src={enroll} alt='home' className='navimage'/>
-                        <a href='studentenroll/'>Enrollments</a>
+                        <a href='/login'>Enrollments</a>
                     </li>
                     <li>
                         <img src={pay} alt='home' className='navimage'/>
@@ -80,7 +78,7 @@ function StudentProfile() {
                     </li>
                     <li>
                         <img src={attendance} alt='home' className='navimage'/>
-                        <a href='/studentattendance'>Attendance</a>
+                        <a href='/login'>Attendance</a>
                     </li>
                     <li>
                         <img src={qa} alt='home' className='navimage'/>
@@ -119,68 +117,13 @@ function StudentProfile() {
                         </td>
                     </tr>
                 </table>    
-                <p class='usertxt'>User Profile</p> 
+                <p class='usertxt'>Enroll</p> 
                 <div class="line1"></div>  
-                <table>
-                    <tr>
-                        <td>
-                            <img src={userpng} alt='logo'/>
-                        </td>
-                        <td>
-                            <p class='hellotxt'>{name}<br/>Student</p>
-                        </td>
-                        <td>          
-                            <Link to={'/studentprofileedit'}><button className='btnedit' type="submit">Edit Button</button> </Link>              
-                                                      
-                        </td>
-                    </tr>
-                </table>  
-                <div class="line"></div>   
-                <p class='userprofiletxt'>Full name</p>  
-                <div className='profilebox'>{name}</div>
-                <p class='userprofiletxt'>Username</p>  
-                <div className='profilebox'>{username}</div> 
-                <p class='userprofiletxt'>Gender</p>  
-                <div className='profilebox'>{gender}</div>
-                <br/>
-                <div class="line"></div>
-                <table>
-                    <tr>
-                        <td className='conatctcol'>
-                            <p class='userprofiletxt'>Email Address</p>  
-                            <div className='profilebox'>{email}</div>  
-                        </td>
-                        <td>
-                            <p class='userprofiletxt'>Phone Number</p>  
-                            <div className='profilebox'>{contactnumber}</div>
-                        </td>
-                    </tr>
-                </table>
-                <br/>
-                <div class="line"></div>
-                <table>
-                    <tr>
-                        <td className='conatctcol'>
-                            <p class='userprofiletxt'>Parent Name</p>  
-                            <div className='profilebox'>{parentname}</div>
-                        </td>
-                        <td>
-                            <p class='userprofiletxt'>Parent Phone Number</p>  
-                            <div className='profilebox'>{parentphonenumber}</div>
-                        </td>
-                    </tr>
-                </table>
-                <br/>
-                <div class="line"></div>
-                <p class='userprofiletxt'>Security Question - What city were you born in?</p>  
-                <div className='profilebox'>{secanswer}</div> 
-                <br/>
-                <div class="line"></div>                
-                <br/>
+                
             </div>            
         </div>
     </main>
   )
 }
 
-export default StudentProfile
+export default StudentEnroll
