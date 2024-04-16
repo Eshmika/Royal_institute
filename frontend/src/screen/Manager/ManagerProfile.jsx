@@ -16,7 +16,7 @@ import userpng from './photos/User.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import ManagerEnrollments from './ManagerEnrollments'
-
+import Attendance from './Attendance'
 
 function ManagerProfile() {
     const [name, setName] = useState();
@@ -78,7 +78,7 @@ function ManagerProfile() {
                     </li>
                     <li>
                         <img src={attendance} alt='home' className='navimage'/>
-                        <a href='/login'>Attendance</a>
+                        <a href='/Attendance'>Attendance</a>
                     </li>
                     <li>
                         <img src={qa} alt='home' className='navimage'/>

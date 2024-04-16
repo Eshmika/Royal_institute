@@ -39,6 +39,8 @@ router.post('/register', registerStudent)
 router.post('/login', loginStudent)
 router.post('/forgotpassword', forgotPasswordstudent)
 router.get('/studentprofile', getProfile)
+router.get('/Enrollnew', getProfile)
+
 router.get('/getstudentprofileedit', getupdateProfile)
 router.put('/studentprofileedit', updateProfile)
 

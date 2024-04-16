@@ -12,10 +12,10 @@ const StudentCardEnroll = ({ studentId }) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const studentResponse = await axios.get(`http://localhost:5555/student/${studentId}`);
+        const studentResponse = await axios.get(`http://localhost:3000/student/${studentId}`);
         setStudentData(studentResponse.data.data);
 
-        const enrollResponse = await axios.get(`http://localhost:5555/enroll/${studentId}`);
+        const enrollResponse = await axios.get(`http://localhost:3000/enroll/${studentId}`);
 
         setEnrolledClasses(enrollResponse.data);
         setLoading(false);
@@ -31,10 +31,10 @@ const StudentCardEnroll = ({ studentId }) => {
 
   const handleUnenroll = async (enrollmentId) => {
     try {
-      await axios.delete('http://localhost:5555/enroll/${enrollmentId}');
+      await axios.delete('http://localhost:5000/enroll/${enrollmentId}');
       
       // Refetch the enrolled classes after deletion
-      const enrollResponse = await axios.get(`http://localhost:5555/enroll/${studentId}`);
+      const enrollResponse = await axios.get(`http://localhost:5000/enroll/${studentId}`);
       // Assuming the response data is an array of enrollments
       setEnrolledClasses(enrollResponse.data); 
     } catch (error) {

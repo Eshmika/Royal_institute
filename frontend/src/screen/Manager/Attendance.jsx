@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom'
 import Enrollnew from '../../components/Enrollnew';
 
 
-function ManagerEnrollments() {
+function Attendance() {
     const [name, setName] = useState();
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
@@ -120,16 +120,9 @@ function ManagerEnrollments() {
                 <p class='usertxt'>EnrollMents</p> 
                 <div class="line1"></div>  
                 
-
-                <div>
-                    
-                <Enrollnew />  
-                    
-                    
-                    </div>
                 
                 
-                              
+                               
                 
             </div>            
         </div>
@@ -137,4 +130,4 @@ function ManagerEnrollments() {
   )
 }
 
-export default ManagerEnrollments
+export default Attendance

@@ -18,6 +18,8 @@ import ManagerLogin from './screen/Manager/ManagerLogin';
 import ManagerForgetPassword from './screen/Manager/Forgetpasswordmanager';
 import ManagerProfile from './screen/Manager/ManagerProfile';
 import ManagerEnrollments from './screen/Manager/ManagerEnrollments';
+import Attendance from './screen/Manager/Attendance';
+
 
 
 import AdminLogin from './screen/Admin/AdminLogin';
@@ -57,6 +59,7 @@ function App() {
       <Route path='/adminforgetpassword' element={<AdminForgetPassword/>}/>
       <Route path="/adminprofile" element={<AdminProfile />} />
       <Route path="/addteacher" element={<AddTeacher />} />
+      <Route path="/attendance" element={<Attendance />} />
             
       
     </Routes>    
