@@ -26,4 +26,15 @@ router.post('/attendance', async (req, res) => {
   }
 });
 
+// Route to get all attendance records
+router.get('/attendance', async (req, res) => {
+  try {
+    const attendanceRecords = await Attendance.find();
+    res.json(attendanceRecords);
+  } catch (error) {
+    console.error('Error fetching attendance records:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 module.exports = router;

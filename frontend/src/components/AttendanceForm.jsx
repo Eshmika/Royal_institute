@@ -9,20 +9,20 @@ const AttendanceForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5555/attendance", {
+      const response = await axios.post("http://localhost:5000/api/attendance", {
         classId: classId,
         studentId: studentId,
+        present: present // Make sure to include 'present' in the request body
       });
       console.log('Attendance submitted:', response.data);
       // Reset form after successful submission
       setClassId('');
       setStudentId('');
-      setPresent(true);
+      setPresent(false); // Reset the 'present' state to false after submission
     } catch (error) {
       console.error('Error submitting attendance:', error);
     }
   };
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -36,7 +36,7 @@ const AttendanceForm = () => {
       </div>
       <div>
         <label htmlFor="present">Present:</label>
-        <input type="checkbox" id="present" checked={present} value={true} onChange={(e) => setPresent(e.target.checked)} />
+        <input type="checkbox" id="present" checked={present} onChange={(e) => setPresent(e.target.checked)} />
       </div>
       <button className='btn btn-primary mr-2' type="submit">Submit Attendance</button>
     </form>

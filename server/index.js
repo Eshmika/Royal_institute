@@ -7,6 +7,7 @@ const Classes = require('./models/Classes');
 const cookieParser = require('cookie-parser');
 const app = express();
 const studentEnrollRouter = require('./controllers/studentEnrollRouter');
+const attendanceRouter =require('./controllers/attendanceRouter');
 
 mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log('MongoDB connected'))
@@ -21,6 +22,8 @@ app.use(express.urlencoded({extended: false}));
 app.use('/', require('./routes/authRouters'));
 app.use('/', require('./routes/timetableRouter'));
 app.use('/api', studentEnrollRouter);
+app.use('/api', attendanceRouter);
+
 
 //add class
 

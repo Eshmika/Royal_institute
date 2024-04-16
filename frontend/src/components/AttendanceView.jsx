@@ -13,7 +13,7 @@ const ViewAttendanceForm = () => {
 
   const fetchAttendanceRecords = async () => {
     try {
-      const response = await axios.get('http://localhost:500/api/attendance');
+      const response = await axios.get('http://localhost:5000/api/attendance');
       setAttendanceRecords(response.data);
     } catch (error) {
       console.error('Error fetching attendance records:', error);
