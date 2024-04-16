@@ -17,7 +17,7 @@ import logout from './navbar_images/Logout.png'
 import './navbar.css'
 
 const WeekTimetable = () => {
-  const [timetableData, setTimetableData] = useState([]);
+  const [timetableData, setTimetableData] = useState([]); 
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [gradeFilter, setGradeFilter] = useState('');
   const [teacherFilter, setTeacherFilter] = useState('');
