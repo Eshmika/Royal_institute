@@ -22,7 +22,9 @@ const { test,
     loginAdmin,
     forgotPasswordadmin,
     getAdminProfile,
-    logout 
+    logout ,
+    
+
 } = require('../controllers/authController');
 
 //middleware
@@ -55,6 +57,8 @@ router.post('/managerregister', registerManager)
 router.post('/managerlogin', loginManager)
 router.post('/managerforgetpassword', forgotPasswordmanager)
 router.get('/managerprofile', getManagerProfile)
+
+
 
 router.post('/adminregister', registerAdmin)
 router.post('/adminlogin', loginAdmin)

@@ -15,7 +15,9 @@ import logo from './photos/logofull.png'
 import userpng from './photos/User.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Enrollnew from '../../components/Enrollnew';
+import Enrollnew from '../../components/Enrollnew'
+import ViewAttendanceForm from '../../components/AttendanceView'
+import AttendanceForm from '../../components/AttendanceForm'
 
 
 function Attendance() {
@@ -117,11 +119,13 @@ function Attendance() {
                         </td>
                     </tr>
                 </table>    
-                <p class='usertxt'>EnrollMents</p> 
+                <p class='usertxt'>Attendance</p> 
                 <div class="line1"></div>  
                 
                 
                 
+                <ViewAttendanceForm/>
+                <AttendanceForm/>
                                
                 
             </div>  
@@ -132,8 +136,8 @@ function Attendance() {
 
 
 
-            
-                      
+
+
         </div>
     </main>
   )
