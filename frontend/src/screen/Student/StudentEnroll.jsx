@@ -16,6 +16,7 @@ import userpng from './photos/User.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import ViewAllClassToEnroll from '../../components/ViewAllClassToEnroll'
+import StudentEnrollForm from '../../components/StudentEnrollForm'
 
 
 
@@ -123,6 +124,7 @@ function StudentEnroll() {
                 <div class="line1"></div>  
 
                 <ViewAllClassToEnroll/>
+                <StudentEnrollForm/>
                 
                 
             </div>            

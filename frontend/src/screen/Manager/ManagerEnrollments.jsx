@@ -16,7 +16,8 @@ import userpng from './photos/User.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Enrollnew from '../../components/Enrollnew';
-
+import StudentEnrollForm from '../../components/StudentEnrollForm'
+import StudentEnrollTable from '../../components/StudentEnrollTable'
 
 function ManagerEnrollments() {
     const [name, setName] = useState();
@@ -124,7 +125,8 @@ function ManagerEnrollments() {
                 <div>
                     
                 <Enrollnew />  
-                    
+                <StudentEnrollForm/>
+                <StudentEnrollTable/>
                     
                     </div>
                 
