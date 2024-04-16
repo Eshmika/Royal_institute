@@ -15,7 +15,7 @@ import logo from './photos/logofull.png'
 import userpng from './photos/User.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import ViewAllClassToEnroll from '../../components/ViewAllClassToEnroll'
+import ViewAllClassToEnroll from '../../components/ViewAllClassToEnroll';
 
 
 function StudentEnroll() {

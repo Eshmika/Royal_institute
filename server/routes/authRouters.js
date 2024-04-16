@@ -64,5 +64,8 @@ router.get('/adminprofile', getAdminProfile)
 router.get('/logout', logout)
 
 
+router.get('')
+
+
 
 module.exports = router;

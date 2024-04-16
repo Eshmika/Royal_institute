@@ -17,8 +17,9 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import ManagerEnrollments from './ManagerEnrollments'
 import Attendance from './Attendance'
+import ClassesInput from '../../components/ClassesInput'
 
-function ManagerProfile() {
+function ManagerClasses() {
     const [name, setName] = useState();
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
@@ -62,7 +63,7 @@ function ManagerProfile() {
                     </li>
                     <li>
                         <img src={classes} alt='home' className='navimage'/>
-                        <a href='/ManagerClasses'>My Classes</a>
+                        <a href='/login'>My Classes</a>
                     </li>
                     <li>
                         <img src={enroll} alt='home' className='navimage'/>
@@ -117,52 +118,14 @@ function ManagerProfile() {
                         </td>
                     </tr>
                 </table>    
-                <p class='usertxt'>User Profile</p> 
+                <p class='usertxt'>Manage Claasees</p> 
                 <div class="line1"></div>  
-                <table>
-                    <tr>
-                        <td>
-                            <img src={userpng} alt='logo'/>
-                        </td>
-                        <td>
-                            <p class='hellotxt'>{name}<br/>Manager</p>
-                        </td>
-                        <td>          
-                            <Link to={'/'}><button className='btnedit' type="submit">Search users</button> </Link>              
-                                                      
-                        </td>
-                    </tr>
-                </table>  
-                <div class="line"></div>   
-                <p class='userprofiletxt'>Full name</p>  
-                <div className='profilebox'>{name}</div>
-                <p class='userprofiletxt'>Username</p>  
-                <div className='profilebox'>{username}</div>                 
-                <br/>
-                <div class="line"></div>
-                <table>
-                    <tr>
-                        <td className='conatctcol'>
-                            <p class='userprofiletxt'>Email Address</p>  
-                            <div className='profilebox'>{email}</div>  
-                        </td>
-                        <td>
-                            <p class='userprofiletxt'>Phone Number</p>  
-                            <div className='profilebox'>{contactnumber}</div>
-                        </td>
-                    </tr>
-                </table>
-                <br/> 
-                <div class="line"></div>
-                <p class='userprofiletxt'>Security Question - What city were you born in?</p>  
-                <div className='profilebox'>{secanswer}</div> 
-                <br/>
-                <div class="line"></div>               
-                
+                             
+                <ClassesInput />
             </div>            
         </div>
     </main>
   )
 }
 
-export default ManagerProfile
+export default ManagerClasses
