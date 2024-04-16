@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+}
+
+a{
+    font-family: inter,Arial, Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+.bodyE{
+    font-family: inter,Arial, Helvetica, sans-serif;
+    min-height: 100%;
+    background-color:rgb(231, 230, 238);
+    margin: 0;
+	font-family: sans-serif;
+	font-weight: 100;
+	opacity:0.9;
+    font-family: Helvetica Neue, sans-serif;
+   
+
+}
+
+
+.heading3A{
+    position: absolute;
+    width: 968px;
+    height: 25px;
+    left: 336px;
+    top: 136px;
+    font-family: 'Epilogue';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28.8546px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    color: #5D7285;
+
+}
