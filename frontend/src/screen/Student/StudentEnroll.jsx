@@ -15,6 +15,7 @@ import logo from './photos/logofull.png'
 import userpng from './photos/User.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import ViewAllClassToEnroll from '../../components/ViewAllClassToEnroll'
 
 
 function StudentEnroll() {
@@ -117,8 +118,11 @@ function StudentEnroll() {
                         </td>
                     </tr>
                 </table>    
-                <p class='usertxt'>Enroll</p> 
+                <p class='usertxt'>Enrollments</p> 
                 <div class="line1"></div>  
+
+                <ViewAllClassToEnroll/>
+                
                 
             </div>            
         </div>
