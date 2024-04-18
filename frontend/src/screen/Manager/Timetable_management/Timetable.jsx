@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import Head from '../Header/Header';
 
 
 
@@ -127,7 +128,7 @@ function ManagerTimetable  (){
   ];
   return (
     <div className="mt-4">
-      
+         <Head/>
       <h2 className="text-lg font-bold mb-2">Timetable Data</h2>
       
       <div className="w-full ml-8 "style={{ float: 'left',marginLeft:'500px' }}>
