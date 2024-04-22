@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Head from "../Header/Header";
 
 function ManagerUpdateTimetable() {
     const { id } = useParams();
@@ -78,6 +79,7 @@ function ManagerUpdateTimetable() {
 
     return (
         <div className="container">
+             <Head/>
             <h1 className="center-align">Update Timetable</h1>
             <div className="row">
                 <form className="col s12" onSubmit={update}>
