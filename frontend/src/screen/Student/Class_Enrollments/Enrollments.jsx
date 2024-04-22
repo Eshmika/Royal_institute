@@ -5,8 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/Sasi.css';
 import { toast } from 'react-hot-toast';
 
-
-
 function Enrollments() {
     const [classes, setClasses] = useState([]);
     const [name, setName] = useState();
@@ -18,9 +16,11 @@ function Enrollments() {
     const [parentphonenumber, setParentPhonenumber] = useState();
     const [secanswer, setSecAnswer] = useState();
     const [enrollmentAlert, setEnrollmentAlert] = useState(null);
+    const [subjects, setSubjects] = useState([]);
 
     useEffect(() => {
-        fetchClasses();
+        
+        fetchSubjects()
     }, []);
 
     useEffect(()=>{
@@ -44,10 +44,12 @@ function Enrollments() {
     });
     },[])
 
-    const fetchClasses = () => {
-        axios.get('/getclass')
+    
+
+    const fetchSubjects = () => {
+        axios.get('/viewSubject')
             .then((res) => {
-                setClasses(res.data);
+                setSubjects(res.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -124,24 +126,25 @@ function Enrollments() {
                                     <thead className='thead-dark'>
                                         <tr>
                                             <th scope='col'>Class ID</th>
-                                            <th scop='col'>Teacher</th>
-                                            <th scope='col'>Subject</th>
-                                            <th scope='col'>Time</th>
+                                            <th scop='col'>Subject</th>
+                                            
+                                            <th scope='col'>Teacher</th>
+                                            <th scope='col'>Class fee</th>
                                             <th scope='col'></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {classes.map((classItem) => (
-                                            <tr key={classItem._id}>
-                                                <th >{classItem.classid}</th>
-                                                <td>{classItem.teacherid}</td>
-                                                <td>{classItem.subject}</td>
-                                                <td>{classItem.time}</td>
+                                        {subjects.map((subject) => (
+                                            <tr key={subject.sbid}>
+                                                <th >{subject.sbid}</th>
+                                                <th >{subject.subjectname}</th>
+                                                <td>{subject.teachername}</td>
+                                                <td>{subject.amount}</td>
                                                 <td>
                                                     <button
                                                         type='button'
                                                         className='btn btn-info'
-                                                        onClick={() => enrollStudent(classItem.classid,classItem.teacherid,classItem.subject,classItem.time,classItem.grade)}
+                                                        onClick={() => enrollStudent(subject.sbid,subject.teid,subject.subjectname,subject.teachername,subject.grade)}
                                                     >
                                                         Enroll
                                                     </button>
