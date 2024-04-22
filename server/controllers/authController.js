@@ -2,6 +2,7 @@ const Student = require('../models/Students');
 const Teacher = require('../models/Teacher');
 const Manager = require('../models/Manager');
 const Admin = require('../models/Admin');
+const Wallet = require('../models/Wallets');
 const { hashPassword, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 
@@ -12,7 +13,7 @@ const test = (req, res) => {
 //Register a student
 const registerStudent = async(req, res) => {
     try {
-        const { name, email, contactnumber, username, password } = req.body;
+        const { name, email, contactnumber, grade, username, stdid, password,walletid } = req.body;
 
         if(!name){
             return res.json({
@@ -28,7 +29,13 @@ const registerStudent = async(req, res) => {
 
         if(!contactnumber){
             return res.json({
-                error: 'Phone number is required'
+                error: 'Contact number is required'
+            })
+        };
+
+        if(!grade){
+            return res.json({
+                error: 'Grade is required'
             })
         };
 
@@ -36,7 +43,13 @@ const registerStudent = async(req, res) => {
             return res.json({
                 error: 'Username is required'
             })
-        };        
+        };  
+        
+        if(!stdid || stdid.length < 9 || stdid.length > 9){
+            return res.json({
+                error: 'Student id is required and should be minimum 8 characters long'
+            })
+        }; 
 
         if(!password || password.length < 6){
             return res.json({
@@ -58,18 +71,35 @@ const registerStudent = async(req, res) => {
             })
         };
 
+        const existstdid = await Student.findOne({stdid});
+        if(existstdid){
+            return res.json({
+                error: 'Student id is already in use'
+            })
+        };
+
         const hashedPassword = await hashPassword(password);
 
         const user = await Student.create({
             name,
             email,
             contactnumber,
+            grade,
             username,
+            stdid,
             password: hashedPassword
         });
 
+        const wallet = await Wallet.create({
+            stdid,
+            studentname: name,
+            walletid,
+            balance: "0.00"
+        });
+
         return res.json({
-            user
+            user,
+            wallet
         })
 
     } catch (error) {
@@ -230,13 +260,55 @@ const logout = (req, res) => {
 //Register a teacher
 const registerTeacher = async(req, res) => {
     try {
-        const { name, email, contactnumber, username, password, gender, subject, SecAnswer } = req.body;
+        const { name, email, contactnumber, teid, username, password, gender, subject, SecAnswer } = req.body;
 
         if(!name){
             return res.json({
                 error: 'Name is required'
             })
-        };        
+        };   
+        
+        if(!email){
+            return res.json({
+                error: 'Email is required'
+            })
+        };
+
+        if(!username){
+            return res.json({
+                error: 'Username is required'
+            })
+        };
+
+        if(!contactnumber){
+            return res.json({
+                error: 'Contact is required'
+            })
+        };
+
+        if(!gender){
+            return res.json({
+                error: 'Gender is required'
+            })
+        };
+
+        if(!subject){
+            return res.json({
+                error: 'Subject is required'
+            })
+        };
+
+        if(!SecAnswer){
+            return res.json({
+                error: 'Security answer is required'
+            })
+        };
+
+        if(!password || password.length < 6){
+            return res.json({
+                error: 'Password is required and should be minimum 6 characters long'
+            })
+        };
 
         const existemail = await Teacher.findOne({email});
         if(existemail){
@@ -252,6 +324,13 @@ const registerTeacher = async(req, res) => {
             })
         };
 
+        const existteid = await Teacher.findOne({teid});
+        if(existteid){
+            return res.json({
+                error: 'Teacher id is already in use'
+            })
+        };
+
         const hashedPassword = await hashPassword(password);
 
         const user = await Teacher.create({
@@ -259,6 +338,7 @@ const registerTeacher = async(req, res) => {
             email,
             contactnumber,
             username,
+            teid,
             password: hashedPassword,
             gender,           
             subject,
@@ -764,6 +844,36 @@ const getAdminProfile = async (req, res) =>{
     }        
 }
 
+//view all students
+const getallStudent = async (req, res) =>{
+    Student.find()
+    .then(student => res.json(student))
+    .catch(err => res.json(err));
+}
+
+//view all teachers
+const getallTeacher = async (req, res) =>{
+    Teacher.find()
+    .then(teacher => res.json(teacher))
+    .catch(err => res.json(err));
+}
+
+//delete a student
+const deleteStudent = async (req, res) =>{
+    const id = req.params.id;
+    Student.findByIdAndDelete(id)
+    .then(student => res.json(student))
+    .catch(err => res.json(err));
+}
+
+//delete a teacher
+const deleteTeacher = async (req, res) =>{
+    const id = req.params.id;
+    Teacher.findByIdAndDelete(id)
+    .then(teacher => res.json(teacher))
+    .catch(err => res.json(err));
+}
+
 module.exports = {
     test,
     registerStudent,
@@ -786,5 +896,9 @@ module.exports = {
     loginAdmin,
     forgotPasswordadmin,
     getAdminProfile,
+    getallStudent,
+    getallTeacher,
+    deleteStudent,
+    deleteTeacher,
     logout
 }

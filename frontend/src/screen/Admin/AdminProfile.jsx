@@ -38,7 +38,7 @@ function AdminProfile() {
         })
     },[])
 
-    const handleDelete = () => {
+    const handleDeletetoken = () => {
         axios.get('/logout').then(res => {
             console.log(res);
             window.location.href = '/';
@@ -93,7 +93,7 @@ function AdminProfile() {
                     <br/><br/><br/><br/>
                     <li className='logoutsq'>
                         <img src={logout} alt='home' className='navimage'/>
-                        <button className='logoutbtn' onClick={handleDelete}>Logout</button>
+                        <button className='logoutbtn' onClick={handleDeletetoken}>Logout</button>
                     </li>
                 </ul>
             </div>
@@ -122,16 +122,16 @@ function AdminProfile() {
                             <p class='hellotxt'>{name}<br/>Admin</p>
                         </td>
                         <td>          
-                            <Link to={'/'}><button className='btnedit' type="submit">Search users</button> </Link>
+                            <Link to={'/searchusersadmin'}><button className='btnedit' type="submit">Search users</button> </Link>
                         </td>
                         <td>          
                             <Link to={'/addteacher'}><button className='btnedit' type="submit">Add Teacher</button> </Link>
                         </td>  
                         <td>          
-                            <Link to={'/addteacher'}><button className='btnedit' type="submit">Add Manager</button> </Link>
+                            <Link to={'/addmanager'}><button className='btnedit' type="submit">Add Manager</button> </Link>
                         </td>  
                         <td>          
-                            <Link to={'/addteacher'}><button className='btnedit' type="submit">Add Admin</button> </Link>
+                            <Link to={'/addadmin'}><button className='btnedit' type="submit">Add Admin</button> </Link>
                         </td>                        
                     </tr>
                 </table>  
