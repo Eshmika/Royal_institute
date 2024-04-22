@@ -93,6 +93,17 @@ import AddAdmin from './screen/Admin/AddAdmin';
 import SearchusersAdmin from './screen/Admin/AdminSearchusers';
 
 
+//sasindu
+import Enrollments from './screen/Student/Class_Enrollments/Enrollments';
+import MyClass from './screen/Student/Class_Enrollments/Myclass';
+import ManagerEnroll from './screen/Manager/Enroll/ManagerEnroll';  
+import Attend from './screen/Manager/Attendance/Attend';
+import AttendStudent from './screen/Student/StAttend/AttendStudent';
+import AttendTeacher from './screen/Teacher/AttendTeacher/AttendTeacher';
+
+
+
+
 
 import axios from 'axios';
 import {Toaster} from 'react-hot-toast';
@@ -201,6 +212,23 @@ function App() {
       <Route path="/addmanager" element={<AddManager />} />
       <Route path="/addadmin" element={<AddAdmin />} />
       <Route path="/searchusersadmin" element={<SearchusersAdmin />} />   
+
+
+
+      //sasindu
+      <Route path="/Enrollments" element={<Enrollments />} />     
+      <Route path="/MyClass" element={<MyClass />} />   
+      <Route path="/ManagerEnroll" element={<ManagerEnroll />} />  
+      <Route path="/Attend" element={<Attend />} />
+      <Route path="/AttendStudent" element={<AttendStudent />} />
+      <Route path="/AttendTeacher" element={ <AttendTeacher/>} />
+      
+
+      
+
+
+
+
 
       
               

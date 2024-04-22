@@ -49,7 +49,7 @@ function Nav() {
                     </li>
                     <li>
                         <img src={attendance} alt='home' className='navimage'/>
-                        <a href='/login'>Attendance</a>
+                        <a href='/AttendTeacher'>Attendance</a>
                     </li>
                     <li>
                         <img src={qa} alt='home' className='navimage'/>
