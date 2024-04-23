@@ -9,7 +9,7 @@ import Head from '../Header/Header';
 
 function AddQuestion() {
 
-
+ //button
   const [teacher, setTeacher] = useState();
   const [question, setQuestion] = useState();
   const [idnumber, setName] = useState();
