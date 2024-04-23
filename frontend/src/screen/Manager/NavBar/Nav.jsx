@@ -40,7 +40,7 @@ function Nav() {
                     </li>
                     <li>
                         <img src={pay} alt='home' className='navimage'/>
-                        <a href='/managerfinancial'>Payment</a>
+                        <a href='/ManagerEnroll'>Payment</a>
                     </li>
                     <li>
                         <img src={time} alt='home' className='navimage'/>
@@ -48,7 +48,7 @@ function Nav() {
                     </li>
                     <li>
                         <img src={attendance} alt='home' className='navimage'/>
-                        <a href='/'>Attendance</a>
+                        <a href='/Attend'>Attendance</a>
                     </li>
                    
                     <li>
