@@ -100,6 +100,8 @@ import ManagerEnroll from './screen/Manager/Enroll/ManagerEnroll';
 import Attend from './screen/Manager/Attendance/Attend';
 import AttendStudent from './screen/Student/StAttend/AttendStudent';
 import AttendTeacher from './screen/Teacher/AttendTeacher/AttendTeacher';
+import SubjectView from './screen/Manager/Attendance/SubjectView';
+import EnrollmentForm from './screen/Manager/Enroll/EnrollmentForm';
 
 
 
@@ -222,6 +224,8 @@ function App() {
       <Route path="/Attend" element={<Attend />} />
       <Route path="/AttendStudent" element={<AttendStudent />} />
       <Route path="/AttendTeacher" element={ <AttendTeacher/>} />
+      <Route path="/SubjectView" element={<SubjectView />} />
+      <Route path="/ManagerEnroll/EnrollmentForm" element={<EnrollmentForm />} />
       
 
       

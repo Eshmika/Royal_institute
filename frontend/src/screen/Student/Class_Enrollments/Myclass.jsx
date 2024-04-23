@@ -90,9 +90,9 @@ function MyClass() {
                                     <thead className='thead-dark'>
                                         <tr>
                                             <th scope='col'>Class ID</th>
-                                            <th scope='col'>Teacher</th>
+                                            <th scope='col'>Teacher ID</th>
                                             <th scope='col'>Subject</th>
-                                            <th scope='col'>Time</th>
+                                            <th scope='col'>Techer Name</th>
                                             <th scope='col'>Actions</th>
                                             <th scope='col'>Make payment</th>
                                         </tr>

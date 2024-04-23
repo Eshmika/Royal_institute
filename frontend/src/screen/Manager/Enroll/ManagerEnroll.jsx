@@ -4,12 +4,16 @@ import Head from '../Header/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/Sasi.css';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function ManagerEnroll() {
     const [enrollments, setEnrollments] = useState([]);
     const [filteredEnrollments, setFilteredEnrollments] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [showPopup, setShowPopup] = useState(false);
+    
     const [formData, setFormData] = useState({
         studentId: '',
         classId: '',
@@ -37,6 +41,8 @@ function ManagerEnroll() {
         toast.error('Error Database not Connected'); 
       }
     };
+
+    const navigate = useNavigate();
   
     const handleDelete = async (id) => {
       try {
@@ -77,6 +83,10 @@ function ManagerEnroll() {
       const handleClosePopup = () => {
         setShowPopup(false);
       };
+
+      const handleenrollform = () => {
+        navigate("/ManagerEnroll/EnrollmentForm");
+    };
     
       const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -118,8 +128,8 @@ function ManagerEnroll() {
                                 placeholder="Search by Studentid , class Id , teacher id or Subject..."
                                 value={searchQuery}
                                 onChange={handleSearch}
-                                className="form-control mb-3"
-                            />
+                                className="form-control mb-3"/>
+                            
                             
                             <table className="table">
                                 <thead>
@@ -222,15 +232,16 @@ function ManagerEnroll() {
                                         />
                                         <label>Time:</label> 
                                     </div>
-                                    <button type="submit" className="btn btn-primary">
-                                        Add Enrollment
-                                    </button>
+                                    
                                     <button  className="btn btn-danger btn-sm" onClick={handleClosePopup()}>
                                         Close
                                     </button>
                                 </div>
                             </center>
                         </form>
+                        <button onClick={handleenrollform()}  className="btn btn-primary">
+                                       
+                                        Add Enrollment</button>
                     </div>
                 </div>
             )}

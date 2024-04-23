@@ -41,6 +41,7 @@ app.use('/', require('./routes/classRouter'));
 app.use('/', require('./routes/subjectRouter'));
 app.use('/', require('./routes/EnrollmentsRouters'));
 app.use('/', require('./routes/attendanceRoutes'));
+app.use('/', require('./routes/studentRoutes'));
 
 
 // Setup Multer for file uploads

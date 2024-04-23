@@ -32,15 +32,15 @@ function Nav() {
                     </li>
                     <li>
                         <img src={classes} alt='home' className='navimage'/>
-                        <a href='/'>My Classes</a>
+                        <a href='/SubjectView'>My Classes</a>
                     </li>
                     <li>
                         <img src={enroll} alt='home' className='navimage'/>
-                        <a href='/'>Enrollments</a>
+                        <a href='/ManagerEnroll'>Enrollments</a>
                     </li>
                     <li>
                         <img src={pay} alt='home' className='navimage'/>
-                        <a href='/ManagerEnroll'>Payment</a>
+                        <a href='/managerfinancial'>Payment</a>
                     </li>
                     <li>
                         <img src={time} alt='home' className='navimage'/>
