@@ -17,6 +17,7 @@ function AddQuestion() {
   const [question, setQuestion] = useState();
   const navigator = useNavigate();
 
+  //button
   const submit = (a) =>{
     a.preventDefault();
     axios.post('http://localhost:5000/createQ', {grade:grade,subject:subject,teacher:teacher,sid:sid,question:question})
