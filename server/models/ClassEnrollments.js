@@ -20,7 +20,7 @@ const ClassEnrollmentsSchema = new mongoose.Schema({
     },
     time:{
         type:String,
-        required:true
+        
     },
     grade:{ 
         type:Number,

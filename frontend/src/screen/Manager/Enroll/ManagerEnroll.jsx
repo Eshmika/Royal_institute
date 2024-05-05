@@ -153,7 +153,7 @@ function ManagerEnroll() {
                                     ))}
                                 </tbody>
                             </table>
-                            <button onClick={handleOpenPopup} className="btn btn-primary">
+                            <button onClick={handleenrollform} className="btn btn-primary">
                                 Add Enrollment
                             </button>
 
