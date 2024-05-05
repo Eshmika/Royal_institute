@@ -51,7 +51,7 @@ const SubjectView = () => {
     <div>
       <Head />
       <div className="container mt-5">
-        <h1 className="mb-4">View All Subjects</h1>
+        <h1 className="mb-4">View All Classes</h1>
         <input
           type="text"
           className="form-control mb-3"
