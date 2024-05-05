@@ -4,16 +4,14 @@ import Head from '../Header/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/Sasi.css';
 import { toast } from 'react-hot-toast';
+import jsPDF from 'jspdf';
 import { useNavigate } from 'react-router-dom';
-
-
 
 function ManagerEnroll() {
     const [enrollments, setEnrollments] = useState([]);
     const [filteredEnrollments, setFilteredEnrollments] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [showPopup, setShowPopup] = useState(false);
-    
     const [formData, setFormData] = useState({
         studentId: '',
         classId: '',
@@ -21,106 +19,101 @@ function ManagerEnroll() {
         subject: '',
         time: '',
         grade: '',
-      });
+    });
 
-
-
-
-  
     useEffect(() => {
-      fetchEnrollments();
+        fetchEnrollments();
     }, []);
-  
+
     const fetchEnrollments = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/classenrollments'); 
-        setEnrollments(response.data);
-        setFilteredEnrollments(response.data);
-      } catch (error) {
-        console.error('Error fetching enrollments:', error);  
-        toast.error('Error Database not Connected'); 
-      }
+        try {
+            const response = await axios.get('http://localhost:5000/classenrollments');
+            setEnrollments(response.data);
+            setFilteredEnrollments(response.data);
+        } catch (error) {
+            console.error('Error fetching enrollments:', error);
+            toast.error('Error Database not Connected');
+        }
     };
 
     const navigate = useNavigate();
-  
-    const handleDelete = async (id) => {
-      try {
-        await axios.delete(`http://localhost:5000/classenrollments/${id}`); 
-        fetchEnrollments();
-        toast.success('Enrollment deleted successfully');
 
-      } catch (error) {
-        console.error('Error deleting enrollment:', error);
-        toast.error('Error deleting enrollment');
-      }
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5000/classenrollments/${id}`);
+            fetchEnrollments();
+            toast.success('Enrollment deleted successfully');
+        } catch (error) {
+            console.error('Error deleting enrollment:', error);
+            toast.error('Error deleting enrollment');
+        }
     };
-  
+
     const handleSearch = (e) => {
-        const query = e.target.value.toLowerCase(); // Convert the query to lowercase directly
+        const query = e.target.value.toLowerCase();
         setSearchQuery(query);
         const filtered = enrollments.filter((enrollment) =>
-          Object.values(enrollment).some((value) => {
-            if (typeof value === 'string') {
-              return value.toLowerCase().includes(query);
-            }
-            return false;
-          })
+            Object.values(enrollment).some((value) => {
+                if (typeof value === 'string') {
+                    return value.toLowerCase().includes(query);
+                }
+                return false;
+            })
         );
         setFilteredEnrollments(filtered);
-      };
+    };
 
-
-      
-
-
-
-
-      const handleOpenPopup = () => {
+    const handleOpenPopup = () => {
         setShowPopup(true);
-      };
-    
-      const handleClosePopup = () => {
-        setShowPopup(false);
-      };
+    };
 
-      const handleenrollform = () => {
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
+
+    const handleenrollform = () => {
         navigate("/ManagerEnroll/EnrollmentForm");
     };
-    
-      const handleChange = (e) => {
+
+    const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-      };
-    
-      const handleSubmit = async (e) => {
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          await axios.post('/classenrollments', formData);
-          setShowPopup(false);
-          toast.success('Enrollment added successfully');
-          fetchEnrollments();
+            await axios.post('/classenrollments', formData);
+            setShowPopup(false);
+            toast.success('Enrollment added successfully');
+            fetchEnrollments();
         } catch (error) {
-          console.error('Error adding enrollment:', error);
-          toast.error('Error adding enrollment');
+            console.error('Error adding enrollment:', error);
+            toast.error('Error adding enrollment');
         }
-      };
-      
+    };
 
+    const generatePDF = () => {
+        const doc = new jsPDF();
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+        doc.text('Enrollments Report', 10, 10);
+        doc.text(`Report Generated On: ${formattedDate}`, 10, 40);
+        doc.autoTable({
+            head: [['Student ID', 'Class ID', 'Teacher ID', 'Subject', 'Grade']],
+            body: enrollments.map(enrollment => [enrollment.studentId, enrollment.classId, enrollment.teacherid, enrollment.subject, enrollment.grade]),
+            startY: 50
+        });
+        doc.save('enrollments_report.pdf');
+    };
 
-
-
-
-
-
-
-      return (
+    return (
         <main>
             <Head />
             <div className='profilecontent'>
                 <div>
                     <p className='usertxt'>Enrollments</p>
                     <div className='line1'></div>
-                    <br/>
+                    <br />
                     <center>
                         <div className='srch'>
                             <input
@@ -128,9 +121,8 @@ function ManagerEnroll() {
                                 placeholder="Search by Studentid , class Id , teacher id or Subject..."
                                 value={searchQuery}
                                 onChange={handleSearch}
-                                className="form-control mb-3"/>
-                            
-                            
+                                className="form-control mb-3" />
+
                             <table className="table">
                                 <thead>
                                     <tr>
@@ -164,11 +156,16 @@ function ManagerEnroll() {
                             <button onClick={handleOpenPopup} className="btn btn-primary">
                                 Add Enrollment
                             </button>
+
+                            <button onClick={generatePDF} className="btn btn-primary">
+                                Download Report
+                            </button>
+
                         </div>
                     </center>
                 </div>
             </div>
-    
+
             {showPopup && (
                 <div className="popup">
                     <div className="popup-content">
@@ -230,24 +227,23 @@ function ManagerEnroll() {
                                             value={formData.time}
                                             onChange={handleChange}
                                         />
-                                        <label>Time:</label> 
+                                        <label>Time:</label>
                                     </div>
-                                    
-                                    <button  className="btn btn-danger btn-sm" onClick={handleClosePopup()}>
+
+                                    <button className="btn btn-danger btn-sm" onClick={handleClosePopup}>
                                         Close
                                     </button>
                                 </div>
                             </center>
                         </form>
-                        <button onClick={handleenrollform()}  className="btn btn-primary">
-                                       
-                                        Add Enrollment</button>
+                        <button onClick={handleenrollform} className="btn btn-primary">
+                            Add Enrollment
+                        </button>
                     </div>
                 </div>
             )}
         </main>
     );
-    
 }
 
 export default ManagerEnroll;

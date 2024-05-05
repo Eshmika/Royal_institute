@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import Head from '../Header/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/Sasi.css';
+import jsPDF from 'jspdf';
 
 function Attend() {
     const [enrollments, setEnrollments] = useState([]);
@@ -11,10 +12,14 @@ function Attend() {
     const [attendances, setAttendances] = useState([]);
     const [dateFilter, setDateFilter] = useState('');
     const [todayDate, setTodayDate] = useState('');
+    const [managerName, setManagerName] = useState('');
+    const [managerUsername, setManagerUsername] = useState('');
+    const [reportDateTime, setReportDateTime] = useState('');
 
     useEffect(() => {
         fetchEnrollments();
         fetchAttendances();
+        fetchManagerDetails(); // Fetch manager details when component mounts
     }, []);
 
     useEffect(() => {
@@ -22,9 +27,21 @@ function Attend() {
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
-        const formattedDate = `${month}"/"${day}"/"${year}`;
+        const formattedDate = `${month}/${day}/${year}`;
         setTodayDate(formattedDate);
     }, []);
+
+    const fetchManagerDetails = async () => {
+        try {
+            // Fetch manager details from an API endpoint
+            const response = await axios.get('/managerdetails');
+            setManagerName(response.data.name);
+            setManagerUsername(response.data.username);
+        } catch (error) {
+            console.error('Error fetching manager details:', error);
+            toast.error('Failed to fetch manager details');
+        }
+    };
 
     const fetchEnrollments = async () => {
         try {
@@ -61,7 +78,6 @@ function Attend() {
     const fetchAttendances = async () => {
         try {
             const response = await axios.get('/attendancemark');
-            
             setAttendances(response.data);
         } catch (error) {
             console.error('Error fetching attendances:', error);
@@ -101,10 +117,28 @@ function Attend() {
         }
     };
 
-
-
-
-    
+    const generatePDF = () => {
+        const doc = new jsPDF();
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+        doc.text('Attendance Report', 10, 10);
+        doc.text(`Report Generated On:${formattedDate}`, 10, 40);
+        // Add table for enrollments
+        let yPos = 50;
+        doc.autoTable({
+            head: [['Student ID', 'Class ID', 'Teacher ID', 'Subject', 'Grade']],
+            body: filteredEnrollments.map(enrollment => [enrollment.studentId, enrollment.classId, enrollment.teacherid, enrollment.subject, enrollment.grade]),
+            startY: yPos
+        });
+        // Add table for attendances
+        yPos = doc.autoTable.previous.finalY + 10;
+        doc.autoTable({
+            head: [['Student ID', 'Class ID', 'Date', 'Time']],
+            body: filteredAttendances.map(attendance => [attendance.studentId, attendance.classId, attendance.date, attendance.time]),
+            startY: yPos
+        });
+        doc.save('attendance_report.pdf');
+    };
 
     return (
         <main>
@@ -112,20 +146,21 @@ function Attend() {
             <div className='profilecontent'>
                 <div>
                     <p className='usertxt'>Attendance</p>
+                    <button className="btn btn-primary" onClick={generatePDF}>Download PDF</button>
                     <div className='line1'></div>
-                    <br/>
+                    <br />
                     <div className='MrkAttend'>
                         <div className="card text-center">
                             <div className="card-header">
                                 Mark Attendance
                             </div>
                             <div className="card-body">
-                                <input 
-                                    type="text" 
-                                    className="form-control mb-4" 
-                                    placeholder="Search..." 
-                                    value={search} 
-                                    onChange={handleSearch} 
+                                <input
+                                    type="text"
+                                    className="form-control mb-4"
+                                    placeholder="Search..."
+                                    value={search}
+                                    onChange={handleSearch}
                                 />
                                 <div className="table-responsive">
                                     <table className="table">
@@ -168,12 +203,12 @@ function Attend() {
                         View Attendance
                     </div>
                     <div className="card-body">
-                        <input 
-                            type="date" 
-                            className="form-control mb-4" 
+                        <input
+                            type="date"
+                            className="form-control mb-4"
                             placeholder={todayDate}
-                            value={dateFilter} 
-                            onChange={handleDateFilter} 
+                            value={dateFilter}
+                            onChange={handleDateFilter}
                         />
                         <div className="table-responsive">
                             <table className="table">
@@ -199,13 +234,10 @@ function Attend() {
                         </div>
                     </div>
                 </div>
-                <button className="btn btn-primary"  onClick={handleClearAttendance} >Clear Attendace </button>
+                <button className="btn btn-primary" onClick={handleClearAttendance}>Clear Attendance</button>
             </div>
-            
         </main>
     );
 }
 
 export default Attend;
-
-

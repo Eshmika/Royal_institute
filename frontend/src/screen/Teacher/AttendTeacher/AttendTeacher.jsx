@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 import Head from '../Header/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/Sasi.css';
-
+import jsPDF from 'jspdf';
 
 function AttendTeacher() {
     const [attendances, setAttendances] = useState([]);
@@ -12,41 +12,19 @@ function AttendTeacher() {
     const [studentFilter, setStudentFilter] = useState('');
     const [studentTeacher, setteacherFilter] = useState('');
 
-    const [name, setName] = useState();
-    const [username, setUsername] = useState();
-    const [email, setEmail] = useState();
-    const [contactnumber, setContactnumber] = useState();
-    const [gender, setGender] = useState();
-    const [subject, setSubject] = useState();
-    const [secanswer, setSecAnswer] = useState();
-
-    useEffect(()=>{
+    useEffect(() => {
         axios.get('/teacherprofile')
-        .then((res)=>{
-            setName(res.data.name);
-            setUsername(res.data.username);
-            setEmail(res.data.email);
-            setContactnumber(res.data.contactnumber);
-            setGender(res.data.gender);
-            setSubject(res.data.subject);            
-            setSecAnswer(res.data.SecAnswer);  
-
-            const setteacherFilter = (e) => {
-                const selectedClass = setUsername(res.data.username);
-                setteacherFilter(selectedClass);
-            };
-
-
-
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-    },[])
+            .then((res) => {
+                setteacherFilter(res.data.username);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [])
 
     useEffect(() => {
         fetchAttendances();
-    }, []);
+    }, [studentTeacher]);
 
     const fetchAttendances = async () => {
         try {
@@ -76,6 +54,30 @@ function AttendTeacher() {
         (classFilter ? attendance.classId.includes(classFilter) : true) &&
         (studentFilter ? attendance.studentId.includes(studentFilter) : true)
     );
+
+    const generateFilteredPDF = () => {
+        const doc = new jsPDF();
+        doc.text('Filtered Attendances Report', 10, 10);
+        doc.autoTable({
+            head: [['Class ID', 'Student ID', 'Date', 'Time']],
+            body: filteredAttendances.map(attendance => [attendance.classId, attendance.studentId, attendance.date, attendance.time]),
+            startY: 20
+        });
+        
+
+        doc.save('filtered_attendances_report.pdf');
+    };
+
+    const generateAllPDF = () => {
+        const doc = new jsPDF();
+        doc.text('All Attendances Report', 10, 10);
+        doc.autoTable({
+            head: [['Class ID', 'Student ID', 'Date', 'Time']],
+            body: attendances.map(attendance => [attendance.classId, attendance.studentId, attendance.date, attendance.time]),
+            startY: 20
+        });
+        doc.save('all_attendances_report.pdf');
+    };
 
     return (
         <main>
@@ -128,20 +130,18 @@ function AttendTeacher() {
                                             ))}
                                         </tbody>
                                     </table>
+                                    <button type="button" className="btn btn-info" onClick={generateFilteredPDF}>Download Filtered Attendances Report</button>
+                                    <button type="button" className="btn btn-secondary" onClick={generateAllPDF}>Download All Attendances Report</button>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
-                    
+
                 </div>
 
-                
+
             </div>
-            
-
-
-
         </main>
     );
 }
