@@ -39,7 +39,7 @@ function Attend() {
             setManagerUsername(response.data.username);
         } catch (error) {
             console.error('Error fetching manager details:', error);
-            toast.error('Failed to fetch manager details');
+            
         }
     };
 
@@ -78,6 +78,7 @@ function Attend() {
     const fetchAttendances = async () => {
         try {
             const response = await axios.get('/attendancemark');
+            
             setAttendances(response.data);
         } catch (error) {
             console.error('Error fetching attendances:', error);
@@ -221,7 +222,7 @@ function Attend() {
                                     </tr>
                                 </thead>
                                 <tbody className="table-body-scroll">
-                                    {filteredAttendances.map((attendance) => (
+                                    {filteredAttendances.sort((a, b) => new Date(b.time) - new Date(a.time)).map((attendance) => (
                                         <tr key={attendance._id}>
                                             <td>{attendance.studentId}</td>
                                             <td>{attendance.classId}</td>
@@ -234,7 +235,7 @@ function Attend() {
                         </div>
                     </div>
                 </div>
-                <button className="btn btn-primary" onClick={handleClearAttendance}>Clear Attendance</button>
+                
             </div>
         </main>
     );
