@@ -3,21 +3,21 @@
     width: 968px;
     height: 25px;
     left: 336px;
-    top: 136px;
+    top: 120px;
     font-family: 'Epilogue';
     font-style: normal;
     font-weight: 600;
     font-size: 28.8546px;
     line-height: 25px;
     letter-spacing: 0.01em;
-    color: #5D7285;
+    color: #063a67;
     }
     
     .tt1{
     position: absolute;
     width: 338px;
     height: 39px;
-    left: 339px;
+    left: 295px;
     top: 205px;
     
     font-family: 'Epilogue';
@@ -48,7 +48,7 @@
     position: absolute;
     width: 338px;
     height: 39px;
-    left: 342px;
+    left: 300px;
     top: 360px;
     font-family: 'Epilogue';
     font-style: normal;
@@ -63,7 +63,7 @@
     position: absolute;
     width: 338px;
     height: 39px;
-    left: 342px;
+    left: 315px;
     top: 459px;
     font-family: 'Epilogue';
     font-style: normal;
@@ -78,7 +78,7 @@
     position: absolute;
     width: 338px;
     height: 39px;
-    left: 342px;
+    left: 310px;
     top: 581px;
     font-family: 'Epilogue';
     font-style: normal;
@@ -106,16 +106,19 @@
 
 
     .uth1{
-        text-decoration:none;
-        color:black;
-        margin-left: 320px;
-        
-        width: 1080px;
-        height: 800px;
-      background: #C9E8EA;
+      text-decoration:none;
+      color:black;
+      margin-left: 300px;
+      width: max-content;
+      height: max-content;
+      padding-right: 100px;
+      padding-bottom: 20px;
+      
+      background: #a7cced;
       border-radius: 20px;
       text-align: center;
       border: 2px solid black;
+      margin-top: 25px;
           
       }
 
