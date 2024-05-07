@@ -54,14 +54,17 @@ const EnrollmentForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         
         const formData = {
-            studentId,
-            classId,
-            teacherId,
-            subject,
-            grade
+            "studentId": studentId,
+            "classId": classId,
+            "teacherId": teacherId,
+            "subject": subject,
+            "grade":grade
         };
+
+        console.log(formData);
 
         console.log("Form Data:", formData);
 
@@ -93,7 +96,7 @@ const EnrollmentForm = () => {
                                 <Form.Control as="select" value={studentId} onChange={e => setStudentId(e.target.value)}>
                                     <option value="">Select Student</option>
                                     {students.map(student => (
-                                        <option key={student._id} value={student._id}>{student.username}</option>
+                                        <option key={student._id} value={student.username}>{student.username}</option>
                                     ))}
                                 </Form.Control>
                             </Form.Group>

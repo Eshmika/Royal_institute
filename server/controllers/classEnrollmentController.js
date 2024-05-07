@@ -3,8 +3,11 @@ const ClassEnrollmentsModel = require('../models/ClassEnrollments');
 // Create a new class enrollment record
 const createClassEnrollment = async (req, res) => {
     try {
-        const { studentId, classId, teacherid, subject, time, grade } = req.body;
-        const enrollment = await ClassEnrollmentsModel.create({ studentId, classId, teacherid, subject, time, grade });
+        const { studentId, classId, teacherId, subject, grade } = req.body;
+
+        console.log(req.body)
+
+        const enrollment = await ClassEnrollmentsModel.create({ "studentId": studentId, "classId": classId , "teacherid": teacherId, "subject": subject, "grade": grade });
         res.json(enrollment);
     } catch (err) {
         res.status(400).json({ error: err.message });

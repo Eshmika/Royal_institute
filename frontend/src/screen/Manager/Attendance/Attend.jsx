@@ -78,7 +78,7 @@ function Attend() {
     const fetchAttendances = async () => {
         try {
             const response = await axios.get('/attendancemark');
-            
+            console.log(response)
             setAttendances(response.data);
         } catch (error) {
             console.error('Error fetching attendances:', error);

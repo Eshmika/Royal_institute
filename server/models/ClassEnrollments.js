@@ -11,12 +11,12 @@ const ClassEnrollmentsSchema = new mongoose.Schema({
     },
     teacherid:{
         type:String,
-        required:true
+        
 
     },
     subject:{
         type:String,
-        required:true
+        
     },
     time:{
         type:String,
