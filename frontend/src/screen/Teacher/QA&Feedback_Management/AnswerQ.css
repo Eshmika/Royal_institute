@@ -10,7 +10,7 @@
     font-size: 28.8546px;
     line-height: 25px;
     letter-spacing: 0.01em;
-    color: #5D7285;
+    color: #063a67;
     }
     
     .ttt3{
@@ -94,10 +94,10 @@
     height: 31px;
     left: 1123px;
     top: 929px;
-    font-family: 'Epilogue';
+    font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 22px;
     line-height: 22px;
     letter-spacing: 0.005em;
     color: #FFFFFF;
@@ -167,11 +167,11 @@
     
     }
 
-    .uth3{
+    .udty{
         text-decoration:none;
         color:black;
         margin-left: 320px;
-        margin-top : 160px;
+        margin-top : 85px;
         width: 1080px;
         height: 900px;
       background: #C9E8EA;
